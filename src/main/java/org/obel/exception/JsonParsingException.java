@@ -6,7 +6,4 @@ public class JsonParsingException extends RuntimeException {
         super(message, cause);
     }
 
-    public JsonParsingException(Throwable cause) {
-        super(cause);
-    }
 }
