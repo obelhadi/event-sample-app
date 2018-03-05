@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Events Management</title>
+    <link rel="stylesheet" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="webjars/bootstrap-datetimepicker/2.4.2/css/bootstrap-datetimepicker.min.css">
+    <script src="webjars/jquery/3.1.1/jquery.min.js"></script>
+    <script src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="webjars/momentjs/2.20.1/moment.js"></script>
+    <script src="webjars/bootstrap-datetimepicker/2.4.2/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/app.js" type="text/javascript"></script>
+</head>
+
+<body>
+<div class="jumbotron">
+    <div class="container">
+        <h1 class="display-3">Welcome to Events App</h1>
+        <p>This is a CRUD application to manage Events in a city</p>
+    </div>
+</div>
+<div>
+    <div class="container">
+        <div><input class="typeahead form-control" style="margin:15px auto;width:300px;" type="text"></div>
+        <div id="eventsContainer">
+            <table class="table" id="eventsTable">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Category</th>
+                    <th>City</th>
+                    <th>Zip Code</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <hr>
+        <p><a class="btn btn-primary btn-lg" href="pages/save.html" role="button">New</a></p>
+    </div>
+</div>
+</body>
+</html>

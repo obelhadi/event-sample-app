@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="../"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Events Management</title>
+    <link rel="stylesheet" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="webjars/bootstrap-datetimepicker/2.4.2/css/bootstrap-datetimepicker.min.css">
+    <script src="webjars/jquery/3.1.1/jquery.min.js"></script>
+    <script src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="webjars/bootstrap-datetimepicker/2.4.2/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="webjars/momentjs/2.20.1/moment.js"></script>
+    <script src="js/app.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="container">
+    <h1 class="display-3" id="actionType"></h1>
+    <form width="50%">
+        <div class="form-group">
+            <label for="eventName">Name</label>
+            <input type="text" class="form-control" id="eventName" placeholder="Enter name">
+        </div>
+
+        <div class="form-group">
+            <label for="eventDescription">Description</label>
+            <textarea rows="3" class="form-control" id="eventDescription" aria-describedby="nameHelp"
+                      placeholder="Enter description"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="eventCategory">Name</label>
+            <select class="form-control" id="eventCategory">
+                <option>Concert</option>
+                <option>Spectacle</option>
+                <option>Football Match</option>
+                <option>Student Activity</option>
+            </select>
+
+        </div>
+
+        <div class="form-group">
+            <label for="eventBeginDate">Begin Date</label>
+            <input type="datetime" class="form-control" id="eventBeginDate" placeholder="Enter begin date">
+        </div>
+
+        <div class="form-group">
+            <label for="eventEndDate">End Date</label>
+            <input type="datetime" class="form-control" id="eventEndDate" placeholder="Enter end date">
+        </div>
+
+        <div class="form-group">
+            <label for="eventInfoUrl">Details Link</label>
+            <input type="text" class="form-control" id="eventInfoUrl" placeholder="Enter link to details">
+        </div>
+
+        <div class="form-group">
+            <label for="eventCity">City</label>
+            <input type="text" class="form-control" id="eventCity" placeholder="Enter city name">
+        </div>
+
+        <div class="form-group">
+            <label for="eventZipCode">City Zip Code</label>
+            <input type="text" class="form-control" id="eventZipCode" placeholder="Enter city zip code">
+        </div>
+
+        <div class="form-group">
+            <label for="eventAddress">Address</label>
+            <input type="text" class="form-control" id="eventAddress" placeholder="Enter event address">
+        </div>
+
+        <hr>
+        <div style="width: 50%">
+            <span class="pull-left">
+                <a class="btn btn-primary btn-lg" href="#" role="button" id="saveEvent">Save</a>
+            </span>
+            <span class="pull-right">
+                <a class="btn btn-primary btn-lg" href="#" role="button" id="cancelEvent">Back</a>
+            </span>
+        </div>
+        <div class="clearfix"></div>
+        <div style="margin-top: 30px"></div>
+
+    </form>
+</div>
+<script type="text/javascript">
+    var url = new URL(window.location.href);
+    var actionType = url.searchParams.get("actionType");
+    if(actionType === 'update') {
+        var eventId = url.searchParams.get("id");
+        $('#actionType').text('Update Event');
+        getEventById(eventId, true);
+    } else {
+        $('#actionType').text('New Event');
+    }
+</script>
+</body>
+</html>

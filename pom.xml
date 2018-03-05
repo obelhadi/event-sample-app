@@ -30,6 +30,7 @@
             <artifactId>spring-boot-starter-jersey</artifactId>
         </dependency>
 
+        <!-- to serve static content -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -41,10 +42,11 @@
             <optional>true</optional>
         </dependency>
 
+        <!-- livereload dev mode -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
-            <optional>false</optional>
+            <optional>true</optional>
         </dependency>
 
         <dependency>
@@ -52,6 +54,32 @@
             <artifactId>transport</artifactId>
             <version>5.6.8</version>
         </dependency>
+
+        <!-- Web jars for jquery / bootstrap / datetimepicker -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>3.3.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap-datetimepicker</artifactId>
+            <version>2.4.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>3.1.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>momentjs</artifactId>
+            <version>2.20.1</version>
+        </dependency>
+
 
 
         <dependency>

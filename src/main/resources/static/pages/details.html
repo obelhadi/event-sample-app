@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="../"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Events Management</title>
+    <link rel="stylesheet" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="webjars/bootstrap-datetimepicker/2.4.2/css/bootstrap-datetimepicker.min.css">
+    <script src="webjars/jquery/3.1.1/jquery.min.js"></script>
+    <script src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="webjars/bootstrap-datetimepicker/2.4.2/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="webjars/momentjs/2.20.1/moment.js"></script>
+    <script src="js/app.js" type="text/javascript"></script>
+
+</head>
+<body>
+<div class="container">
+    <h1 class="display-3">Event Details</h1>
+    <hr/>
+    <div style="width: 50%">
+        <div class="row">
+            <div class="col-lg-6">Name</div>
+            <div id="eventName" class="col-lg-6"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">Description</div>
+            <div id="eventDescription" class="col-lg-6"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">Category</div>
+            <div id="eventCategory" class="col-lg-6"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">Begin Date</div>
+            <div id="eventBeginD" class="col-lg-6"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">End Date</div>
+            <div id="eventEndD" class="col-lg-6"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">Details Link</div>
+            <div class="col-lg-6"><a id="eventInfoUrl"></a></div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">City</div>
+            <div id="eventCity" class="col-lg-6"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">City Zip Code</div>
+            <div id="eventZipCode" class="col-lg-6"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">Address</div>
+            <div id="eventAddress" class="col-lg-6"></div>
+        </div>
+    </div>
+    <div style="margin-top: 20px">
+                <a class="btn btn-primary btn-lg" href="#" role="button" id="cancelEvent">Back</a>
+            </div>
+</div>
+
+</body>
+<script type="text/javascript">
+    var url = new URL(window.location.href);
+    var eventId = url.searchParams.get("id");
+    getEventById(eventId);
+</script>
+</html>
