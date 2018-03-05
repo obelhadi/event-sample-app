@@ -2,6 +2,7 @@ package org.obel.service.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.DocWriteResponse;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.search.SearchResponse;
@@ -21,6 +22,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@Slf4j
 public class EsCrudRepository<T extends HasId> implements CrudRepository<T> {
 
     private final Client client;
@@ -50,6 +52,7 @@ public class EsCrudRepository<T extends HasId> implements CrudRepository<T> {
         } catch (JsonParsingException je) {
             throw je;
         } catch (Exception e) {
+            log.error("save query error :", e);
             throw new ElasticSearchQueryException(e);
         }
     }
@@ -66,6 +69,7 @@ public class EsCrudRepository<T extends HasId> implements CrudRepository<T> {
         } catch (JsonParsingException je) {
             throw je;
         } catch (Exception e) {
+            log.error("update query error :", e);
             throw new ElasticSearchQueryException(e);
         }
     }
@@ -86,6 +90,7 @@ public class EsCrudRepository<T extends HasId> implements CrudRepository<T> {
         } catch (JsonParsingException je) {
             throw je;
         } catch (Exception e) {
+            log.error("find query error :", e);
             throw new ElasticSearchQueryException(e);
         }
     }
@@ -103,6 +108,7 @@ public class EsCrudRepository<T extends HasId> implements CrudRepository<T> {
         } catch (JsonParsingException je) {
             throw je;
         } catch (Exception e) {
+            log.error("findAll query error :", e);
             throw new ElasticSearchQueryException(e);
         }
     }
@@ -112,6 +118,7 @@ public class EsCrudRepository<T extends HasId> implements CrudRepository<T> {
         try {
             return Optional.ofNullable(new ObjectMapper().writeValueAsString(item));
         } catch (JsonProcessingException e) {
+            log.error("Serializing Item error :", e);
             throw new JsonParsingException("Serializing Item error", e);
         }
     }
@@ -121,6 +128,7 @@ public class EsCrudRepository<T extends HasId> implements CrudRepository<T> {
             final Class<T> itemClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
             return Optional.ofNullable(new ObjectMapper().readValue(json, itemClass));
         } catch (IOException e) {
+            log.error("Deserializing Item error :", e);
             throw new JsonParsingException("Deserializing Item error", e);
         }
     }
