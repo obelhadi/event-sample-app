@@ -1,7 +1,7 @@
 function extractDate(date) {
     if (!date)
         return "";
-    return  moment(date).utc().format('DD/MM/YYYY HH:mm');
+    return moment(date).utc().format('DD/MM/YYYY HH:mm');
 }
 
 function getDate(event) {
@@ -16,6 +16,34 @@ function getDate(event) {
     }
     res += '</span>';
     return res;
+}
+
+function showEvents(data) {
+    if (!!data && data.length > 0) {
+        data.forEach(function (event) {
+            $('#eventsTable tbody').append(
+                '<tr>'
+                + '<td class="col-lg-2">' + event.name + '</td>'
+                + '<td class="col-lg-4">' + getDate(event) + '</td>'
+                + '<td class="col-lg-2">' + event.category + '</td>'
+                + '<td class="col-lg-2">' + event.city + '</td>'
+                + '<td class="col-lg-1">' + event.zipCode + '</td>'
+                + '<td class="1"><div class="row">'
+                + '<div class="col-lg-2"><a id="showDetails' + event.id + '"'
+                + ' href="pages/details.html?id=' + event.id + '"><i title="Show details" class="glyphicon glyphicon-file"></i></a> </div>'
+                + '<div class="col-lg-2"><a id="updateEvent' + event.id + '"'
+                + ' href="pages/save.html?actionType=update&id=' + event.id + '"><i title="Edit" class="glyphicon glyphicon-edit"></i></a> </div>'
+                + '<div class="col-lg-2"><a class ="deleteEvent"  id="deleteEvent' + event.id + '"' +
+                ' onclick="deleteEvent(\'' + event.id + '\')" ' +
+                ' href="#"><i title="Remove" class="glyphicon glyphicon-trash"></i></a> </div>'
+                + '</td></div>'
+                + '</tr>'
+            );
+
+        });
+    } else {
+        showEmptyEventsMsg();
+    }
 }
 
 function deleteEvent(id) {
@@ -75,7 +103,39 @@ function getEventById(id, update) {
 }
 
 
+function showEmptyEventsMsg() {
+    clearTableBody();
+    $('#eventsTable tbody').append('<p>There is no events created</p>');
+}
+
+function clearTableBody() {
+    $('#eventsTable tbody').empty();
+}
+function getAllEvents() {
+    $.ajax({
+        url: "/rest/event"
+    }).then(function (data) {
+        clearTableBody();
+        showEvents(data);
+    }, function () {
+        showEmptyEventsMsg();
+    });
+}
+
+function search(keyword) {
+    $.ajax({
+        url: '/rest/event/search?query=' + keyword
+    }).then(function (data) {
+        clearTableBody();
+        showEvents(data);
+    }, function () {
+        showEmptyEventsMsg();
+    });
+
+}
+
 $(document).ready(function () {
+
 
     $('#eventBeginDate').datetimepicker({
         format: 'dd/mm/yyyy hh:ii'
@@ -91,37 +151,17 @@ $(document).ready(function () {
         window.location.href = "/index.html"
     });
 
-
-    $.ajax({
-        url: "/rest/event"
-    }).then(function (data) {
-        if (!!data) {
-            console.log(data);
-            data.forEach(function (event) {
-                $('#eventsTable tbody').append(
-                    '<tr>'
-                    + '<td class="col-lg-2">' + event.name + '</td>'
-                    + '<td class="col-lg-4">' + getDate(event) + '</td>'
-                    + '<td class="col-lg-2">' + event.category + '</td>'
-                    + '<td class="col-lg-2">' + event.city + '</td>'
-                    + '<td class="col-lg-1">' + event.zipCode + '</td>'
-                    + '<td class="1"><div class="row">'
-                    + '<div class="col-lg-2"><a id="showDetails' + event.id + '"'
-                    + ' href="pages/details.html?id=' + event.id + '"><i title="Show details" class="glyphicon glyphicon-file"></i></a> </div>'
-                    + '<div class="col-lg-2"><a id="updateEvent' + event.id + '"'
-                    + ' href="pages/save.html?actionType=update&id=' + event.id + '"><i title="Edit" class="glyphicon glyphicon-edit"></i></a> </div>'
-                    + '<div class="col-lg-2"><a class ="deleteEvent"  id="deleteEvent' + event.id + '"' +
-                    ' onclick="deleteEvent(\'' + event.id + '\')" ' +
-                    ' href="#"><i title="Remove" class="glyphicon glyphicon-trash"></i></a> </div>'
-                    + '</td></div>'
-                    + '</tr>'
-                );
-
-            });
+    $('input.searchInput').keyup(function () {
+        var keyword = $(this).val();
+        if (!!keyword) {
+            search(keyword);
+        } else {
+            getAllEvents();
         }
-    }, function () {
-        $('#eventsContainer').append('<p>There is no events created</p>')
+
     });
+
+    getAllEvents();
 
     $('#saveEvent').click(function (e) {
         e.preventDefault();

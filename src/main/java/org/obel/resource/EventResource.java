@@ -30,6 +30,12 @@ public class EventResource {
     }
 
     @GET
+    @Path("/search")
+    public Response searchEvent(@QueryParam("query") String keyword) {
+        return Response.ok(eventRepository.search(keyword)).build();
+    }
+
+    @GET
     @Path("/{id}")
     public Response getEventById(@PathParam("id") String eventId) {
         return eventRepository.find(eventId)

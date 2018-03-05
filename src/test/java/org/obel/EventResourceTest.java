@@ -138,7 +138,22 @@ public class EventResourceTest {
         verify(eventRepository, times(1)).delete(eventId);
     }
 
+    @Test
+    public void should_search_for_events() {
+        // Given
+        final String keyword = "Test";
+        final List<Event> events = Arrays.asList(anEvent("Test 1", "Paris"), anEvent("Test 2", "Paris"));
+        when(eventRepository.search(keyword)).thenReturn(events);
 
+        // When
+        final Response response = eventResource.searchEvent(keyword);
+
+        // Then
+        assertThat(response.getStatus(), is(HttpStatus.OK.value()));
+        List<Event> foundEvents = (List<Event>) response.getEntity();
+        assertThat(foundEvents, is(events));
+        verify(eventRepository, times(1)).search(keyword);
+    }
 
 
     private Event anEvent(String name, String city) {

@@ -25,9 +25,9 @@ import java.util.stream.Stream;
 @Slf4j
 public class EsCrudRepository<T extends HasId> implements CrudRepository<T> {
 
-    private final Client client;
-    private final String type;
-    private final String indexName;
+    protected final Client client;
+    protected final String type;
+    protected final String indexName;
 
 
     public EsCrudRepository(Client client, String type, String indexName) {
@@ -114,7 +114,7 @@ public class EsCrudRepository<T extends HasId> implements CrudRepository<T> {
     }
 
 
-    private Optional<String> toJson(T item) {
+    protected Optional<String> toJson(T item) {
         try {
             return Optional.ofNullable(new ObjectMapper().writeValueAsString(item));
         } catch (JsonProcessingException e) {
@@ -123,7 +123,7 @@ public class EsCrudRepository<T extends HasId> implements CrudRepository<T> {
         }
     }
 
-    private Optional<T> toItem(String json) {
+    protected Optional<T> toItem(String json) {
         try {
             final Class<T> itemClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
             return Optional.ofNullable(new ObjectMapper().readValue(json, itemClass));
