@@ -16,8 +16,8 @@ import java.util.stream.Stream;
 
 public class EsEventRepository extends EsCrudRepository<Event> implements EventRepository{
 
-    private static String TYPE = "event";
-    private static String INDEX_NAME = "test";
+    public static String TYPE = "event";
+    public static String INDEX_NAME = "test";
 
     public EsEventRepository(Client client) {
         super(client, TYPE, INDEX_NAME);
