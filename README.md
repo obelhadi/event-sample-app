@@ -11,13 +11,13 @@ The front web part uses jQuery, JS, Bootstrap, HTML, CSS.
 3. Wait for Elasticsearch to start  
 
 ### Spring Boot Application
-1. Verify you have JVM 1.8 & Maven 3 installed
+1. Verify you have JVM 1.8
 2. Run the command  
- ```mvn spring-boot:run``` 
-3. This will compile and run the application.  
-Once started you can go open link :  
+ ```mvnw spring-boot:run``` 
+3. This will compile and run the application ( after downloading the right version of Maven)   
+4. Once started you can go open link :  
  [http://localhost:8090/index.html](http://localhost:8090/index.html)
-4. You will be on the home page of the application, start by creating a new event
+5. You will be on the home page of the application, start by creating a new event
 
 ### Customize Configuration
 In the Spring Boot *application.yml* you can set a different application server port.     
