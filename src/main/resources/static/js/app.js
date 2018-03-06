@@ -69,7 +69,6 @@ function getEventById(id, update) {
         type: 'GET',
         contentType: 'application/json'
     }).then(function (event) {
-            console.log('getByID', event);
             var formattedBeginDate = moment(event.beginDate).utc().format('DD/MM/YYYY HH:mm');
             var formattedEndDate = moment(event.beginDate).utc().format('DD/MM/YYYY HH:mm');
             if (!!update) {
