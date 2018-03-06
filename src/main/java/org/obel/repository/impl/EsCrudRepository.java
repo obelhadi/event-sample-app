@@ -1,4 +1,4 @@
-package org.obel.service.impl;
+package org.obel.repository.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,7 +12,7 @@ import org.elasticsearch.search.SearchHit;
 import org.obel.exception.ElasticSearchQueryException;
 import org.obel.exception.JsonParsingException;
 import org.obel.model.HasId;
-import org.obel.service.CrudRepository;
+import org.obel.repository.CrudRepository;
 
 import java.io.IOException;
 import java.lang.reflect.ParameterizedType;

@@ -1,4 +1,4 @@
-package org.obel.service;
+package org.obel.repository;
 
 import org.obel.model.Event;
 

@@ -1,4 +1,4 @@
-package org.obel.service.impl;
+package org.obel.repository.impl;
 
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.search.SearchType;
@@ -6,7 +6,7 @@ import org.elasticsearch.client.Client;
 import org.elasticsearch.index.query.MultiMatchQueryBuilder;
 import org.elasticsearch.search.SearchHit;
 import org.obel.model.Event;
-import org.obel.service.EventRepository;
+import org.obel.repository.EventRepository;
 
 import java.util.List;
 import java.util.Objects;
@@ -14,12 +14,12 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class EsEventService extends EsCrudRepository<Event> implements EventRepository{
+public class EsEventRepository extends EsCrudRepository<Event> implements EventRepository{
 
     private static String TYPE = "event";
     private static String INDEX_NAME = "test";
 
-    public EsEventService(Client client) {
+    public EsEventRepository(Client client) {
         super(client, TYPE, INDEX_NAME);
     }
 

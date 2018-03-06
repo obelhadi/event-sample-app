@@ -1,7 +1,7 @@
 package org.obel.resource;
 
 import org.obel.model.Event;
-import org.obel.service.EventRepository;
+import org.obel.repository.EventRepository;
 import org.springframework.stereotype.Component;
 
 import javax.ws.rs.*;

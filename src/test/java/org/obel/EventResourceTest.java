@@ -7,7 +7,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.obel.model.Event;
 import org.obel.resource.EventResource;
-import org.obel.service.EventRepository;
+import org.obel.repository.EventRepository;
 import org.springframework.http.HttpStatus;
 
 import javax.ws.rs.core.Response;
