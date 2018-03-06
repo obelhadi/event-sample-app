@@ -23,5 +23,9 @@ Once started you can go open link :
 In the Spring Boot *application.yml* you can set a different application server port.     
 You can also change the host/port for Elasticsearch.
 
+### Other remarks
+Sometimes after creating/updating/deleting an event we don't get the changes after redirection to the home page.  
+If changes aren't impacted on the home page a simple refresh on the web browser will do the trick.
+
 
      
